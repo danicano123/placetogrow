@@ -16,13 +16,24 @@ class RolesAndPermissionsSeeder extends Seeder
         $userRole = Role::create(['name' => 'user']);
 
         // Crear permisos
+        $readUsersPermission = Permission::create(['name' => 'read users']);
         $editUsersPermission = Permission::create(['name' => 'edit users']);
         $deleteUsersPermission = Permission::create(['name' => 'delete users']);
         $createSitesPermission = Permission::create(['name' => 'create sites']);
         $editSitesPermission = Permission::create(['name' => 'edit sites']);
         $deleteSitesPermission = Permission::create(['name' => 'delete sites']);
 
-        // Crear usuario y asignarle rol y permisos
+        // Asignar permisos a roles
+        $adminRole->givePermissionTo([
+            $readUsersPermission,
+            $editUsersPermission,
+            $deleteUsersPermission,
+            $createSitesPermission,
+            $editSitesPermission,
+            $deleteSitesPermission
+        ]);
+
+        // Crear usuario y asignarle el rol de admin
         $admin = User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -30,6 +41,5 @@ class RolesAndPermissionsSeeder extends Seeder
         ]);
 
         $admin->assignRole($adminRole);
-        $admin->givePermissionTo([$createSitesPermission, $editSitesPermission, $deleteSitesPermission, $editUsersPermission, $deleteUsersPermission]);
     }
 }
