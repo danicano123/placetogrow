@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::middleware(JwtMiddleware::class)->group(function () {
-        Route::get('/users', [UserController::class,  'index'])->middleware(Authorize::using('delete users'));
-        ;
+        Route::prefix('users')->group(function () {
+            Route::get('', [UserController::class, 'index'])->middleware(Authorize::using('read users'));
+            Route::get('{id}', [UserController::class, 'show'])->middleware(Authorize::using('read users'));
+            Route::patch('{id}', [UserController::class, 'update'])->middleware(Authorize::using('edit users'));
+            Route::post('{userId}/assign-role', [UserController::class, 'assignRole'])->middleware(Authorize::using('edit users'));
+            Route::post('{userId}/remove-role', [UserController::class, 'removeRole'])->middleware(Authorize::using('edit users'));
+        });
     });
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
