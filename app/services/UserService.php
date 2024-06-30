@@ -4,25 +4,38 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserService
 {
     public function getAllUsers()
     {
-        return User::all();
+        try {
+            return User::all();
+        } catch (\Exception $e) {
+            Log::error('Error fetching all users: ' . $e->getMessage());
+        }
     }
 
     public function getUserById($id)
     {
-        $user = User::findOrFail($id);
-        $user->role = $user->getRoleNames(); // Obtener el rol del usuario
-        return $user;
+        try {
+            $user = User::findOrFail($id);
+            $user->role = $user->getRoleNames()->first(); // Obtener el rol del usuario
+            return $user;
+        } catch (\Exception $e) {
+            Log::error('Error fetching user by ID: ' . $e->getMessage());
+        }
     }
 
     public function updateUser($id, Request $request)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return $user;
+        try {
+            $user = User::findOrFail($id);
+            $user->update($request->all());
+            return $user;
+        } catch (\Exception $e) {
+            Log::error('Error updating user: ' . $e->getMessage());
+        }
     }
 }
