@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Models\User;
+use App\Services\RolePermissionService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
@@ -25,6 +27,13 @@ use Tymon\JWTAuth\Facades\JWTAuth;
  */
 class AuthController extends Controller
 {
+    protected $rolePermissionService;
+
+    public function __construct(RolePermissionService $rolePermissionService)
+    {
+        $this->rolePermissionService = $rolePermissionService;
+    }
+
     /**
      * @OA\Post(
      *     path="/api/v1/register",
@@ -58,15 +67,28 @@ class AuthController extends Controller
      */
     public function register(RegisterUserRequest $request): JsonResponse
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
 
-        $token = JWTAuth::fromUser($user);
+            // Asigna el rol al usuario
+            $this->rolePermissionService->assignRoleToUser($user, 'user');
 
-        return response()->json(compact('user', 'token'), 201);
+            // Obtén el nombre del rol
+            $role = $this->rolePermissionService->showUserRole($user);
+
+            // Genera el token JWT
+            $token = JWTAuth::fromUser($user);
+
+            // Respuesta JSON con el usuario, rol y token
+            return response()->json(compact('user', 'role', 'token'), 201);
+        } catch (\Exception $e) {
+            Log::error('Error registering user: ' . $e->getMessage());
+            return response()->json(['error' => 'Error registering user'], 500);
+        }
     }
 
     /**
@@ -102,16 +124,28 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->only('email', 'password');
 
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Credenciales inválidas'], 401);
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'Credenciales inválidas'], 401);
+            }
+
+            // Obtén el usuario autenticado
+            $user = JWTAuth::user();
+
+            // Obtén el nombre del rol del usuario
+            $role = $this->rolePermissionService->showUserRole($user);
+
+            // Respuesta JSON con el usuario, rol y token
+            return response()->json([
+                'user' => $user,
+                'role' => $role,
+                'token' => $token
+            ], 200);
+        } catch (\Exception $e) {
+            Log::error('Error logging in user: ' . $e->getMessage());
+            return response()->json(['error' => 'Error logging in user'], 500);
         }
-
-
-        return response()->json([
-            'user' => JWTAuth::user(),
-            'token' => $token
-        ], 200);
     }
 }
