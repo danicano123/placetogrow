@@ -19,24 +19,24 @@ class RolesAndPermissionsSeeder extends Seeder
         $readUsersPermission = Permission::create(['name' => 'read users']);
         $editUsersPermission = Permission::create(['name' => 'edit users']);
         $deleteUsersPermission = Permission::create(['name' => 'delete users']);
-        $readSitesPermission = Permission::create(['name' => 'read sites']);
-        $createSitesPermission = Permission::create(['name' => 'create sites']);
-        $editSitesPermission = Permission::create(['name' => 'edit sites']);
-        $deleteSitesPermission = Permission::create(['name' => 'delete sites']);
+        $readMicrositesPermission = Permission::create(['name' => 'read microsites']);
+        $createMicrositesPermission = Permission::create(['name' => 'create microsites']);
+        $editMicrositesPermission = Permission::create(['name' => 'edit microsites']);
+        $deleteMicrositesPermission = Permission::create(['name' => 'delete microsites']);
 
         // Asignar permisos a roles
         $adminRole->givePermissionTo([
             $readUsersPermission,
             $editUsersPermission,
             $deleteUsersPermission,
-            $readSitesPermission,
-            $createSitesPermission,
-            $editSitesPermission,
-            $deleteSitesPermission
+            $readMicrositesPermission,
+            $createMicrositesPermission,
+            $editMicrositesPermission,
+            $deleteMicrositesPermission
         ]);
 
         $userRole->givePermissionTo([
-            $readSitesPermission,
+            $readMicrositesPermission,
         ]);
 
         // Crear usuario y asignarle el rol de admin
