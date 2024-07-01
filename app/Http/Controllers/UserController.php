@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
 use App\Services\RolePermissionService;
 use App\Services\UserService;
@@ -30,7 +31,7 @@ class UserController extends Controller
         return response()->json(compact('user'), 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = $this->userService->updateUser($id, $request);
         return response()->json(compact('user'), 200);
