@@ -52,6 +52,10 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
+        ],
+        "pre-commit": [
+            "php vendor/bin/phpcbf --standard=PSR12",
+            "git add ."
         ]
     },
     "extra": {
