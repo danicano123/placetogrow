@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Services;
+namespace App\Domain\Users\Services;
 
-use App\Domain\Models\User;
+use App\Domain\Users\Models\User;
 use Illuminate\Support\Facades\Log;
 
 class RolePermissionService

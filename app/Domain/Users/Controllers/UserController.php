@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Application\Controllers;
+namespace App\Domain\Users\Controllers;
 
-use App\UI\HTTP\Requests\Users\UpdateUserRequest;
-use App\Domain\Models\User;
-use App\Domain\Services\RolePermissionService;
-use App\Domain\Services\UserService;
+use App\Domain\Users\Requests\UpdateUserRequest;
+use App\Domain\Users\Models\User;
+use App\Domain\Users\Services\RolePermissionService;
+use App\Domain\Users\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController

@@ -1,7 +1,7 @@
 <?php
 
-use App\Application\Constants\DocumentTypes;
-use App\Application\Constants\MicrositeTypes;
+use App\Domain\Users\Applications\Constants\DocumentTypes;
+use App\Domain\Microsites\Applications\Constants\MicrositeTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

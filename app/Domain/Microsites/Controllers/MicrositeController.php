@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\Controllers;
+namespace App\Domain\Microsites\Controllers;
 
-use App\UI\HTTP\Requests\Microsites\StoreMicrositeRequest;
-use App\Domain\Services\MicrositeService;
+use App\Domain\Microsites\Requests\StoreMicrositeRequest;
+use App\Domain\Microsites\Services\MicrositeService;
 use Illuminate\Http\Request;
 
 class MicrositeController

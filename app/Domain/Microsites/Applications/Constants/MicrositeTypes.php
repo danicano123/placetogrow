@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Constants;
+namespace App\Domain\Microsites\Applications\Constants;
 
 enum MicrositeTypes: string
 {

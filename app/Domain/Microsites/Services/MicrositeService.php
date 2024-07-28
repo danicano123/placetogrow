@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Services;
+namespace App\Domain\Microsites\Services;
 
-use App\Domain\Models\Microsite;
+use App\Domain\Microsites\Models\Microsite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 

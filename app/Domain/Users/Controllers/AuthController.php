@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Application\Controllers;
+namespace App\Domain\Users\Controllers;
 
-use App\UI\HTTP\Requests\Auth\LoginRequest;
-use App\UI\HTTP\Requests\Auth\RegisterUserRequest;
-use App\Domain\Models\User;
-use App\Domain\Services\RolePermissionService;
+use App\Domain\Users\Requests\LoginRequest;
+use App\Domain\Users\Requests\RegisterUserRequest;
+use App\Domain\Users\Models\User;
+use App\Domain\Users\Services\RolePermissionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;

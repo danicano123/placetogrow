@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UI\HTTP\Requests\Microsites;
+namespace App\Domain\Microsites\Requests;
 
-use App\Application\Constants\DocumentTypes;
-use App\Application\Constants\MicrositeTypes;
+use App\Domain\Users\Applications\Constants\DocumentTypes;
+use App\Domain\Microsites\Applications\Constants\MicrositeTypes;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Constants;
+namespace App\Domain\Users\Applications\Constants;
 
 enum DocumentTypes: string
 {

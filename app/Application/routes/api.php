@@ -1,8 +1,8 @@
 <?php
 
-use App\Application\Controllers\AuthController;
-use App\Application\Controllers\MicrositeController;
-use App\Application\Controllers\UserController;
+use App\Domain\Users\Controllers\AuthController;
+use App\Domain\Microsites\Controllers\MicrositeController;
+use App\Domain\Users\Controllers\UserController;
 use App\Application\Middleware\JwtMiddleware;
 use Illuminate\Auth\Middleware\Authorize;
 // use Illuminate\Http\Request;
