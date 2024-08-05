@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(CreateGetFullFormFunctionSeeder::class);
+        $this->call(CreatePaymentFunctionsSeeder::class);
+        $this->call(CreateMicrositeTriggersSeeder::class);
     }
 }
