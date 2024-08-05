@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Domain\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(CreateGetFullFormFunctionSeeder::class);
+        $this->call(CreatePaymentFunctionsSeeder::class);
+        $this->call(CreateMicrositeTriggersSeeder::class);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Middleware\HandleInertiaRequests;
+use App\Application\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -10,9 +10,9 @@ use Illuminate\Validation\ValidationException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__ . '/../routes/web.php',
-        api: __DIR__ . '/../routes/api.php',
-        commands: __DIR__ . '/../routes/console.php',
+        web: __DIR__ . '/../app/Application/routes/web.php',
+        api: __DIR__ . '/../app/Application/routes/api.php',
+        commands: __DIR__ . '/../app/Application/routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {

@@ -50,7 +50,19 @@ php artisan migrate:refresh --seed
 
 This command will reset the database and seed it with sample data for testing purposes.
 
-### 6. Start the Laravel development server
+### 6. Create an admin user (Optional)
+
+To create an admin user, you can use the following Artisan command:
+
+```bash
+php artisan create:admin-user
+```
+
+This command will prompt you to enter the name, email, and password for the new admin user, then create the user and assign the admin role.
+
+- Tip: By default, the database is seeded with an admin user with email admin@example.com and password password.
+
+### 7. Start the Laravel development server
 
 ```bash
 php artisan serve
@@ -59,3 +71,7 @@ The development server will start running at http://localhost:8000. You can acce
 
 Frontend Repository
 The frontend for PlateToGrow can be found at https://github.com/danicano123/placetogrow-frontend.git.
+
+### 8. Access API Documentation
+
+Swagger API documentation is available at `http://localhost:8000/api/documentation`.
