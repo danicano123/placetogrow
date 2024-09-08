@@ -42,7 +42,7 @@ class CreateMicrositeTriggersSeeder extends Seeder
 
                 -- Crear opciones del campo "Document Type"
                 INSERT INTO form_field_options (form_field_id, name)
-                VALUES (fieldId, "CC"), (fieldId, "NIT"), (fieldId, "PPT");
+                VALUES (fieldId, "CC"), (fieldId, "NIT"), (fieldId, "PPN"), (fieldId, "CE"), (fieldId, "RUT");
 
                 -- Crear el campo "Document"
                 INSERT INTO form_fields (form_id, name, is_required, type, created_at, updated_at)
