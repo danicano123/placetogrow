@@ -41,7 +41,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Crear usuario y asignarle el rol de admin
         $admin = User::create([
-            'name' => 'Admin User',
+            'first_name' => 'Admin',
+            'first_surname' => 'User',
             'email' => 'admin@example.com',
             'password' => bcrypt('password')
         ]);
