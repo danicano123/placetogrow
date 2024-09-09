@@ -67,11 +67,17 @@ class AuthController
     public function register(RegisterUserRequest $request): JsonResponse
     {
         try {
-            $user = User::create([
-                'name' => $request->name,
+            // Crea el usuario con los datos obligatorios y opcionales
+            $userData = array_filter([
+                'first_name' => $request->first_name,
+                'second_name' => $request->second_name,  // Opcional
+                'first_surname' => $request->first_surname,
+                'second_surname' => $request->second_surname,  // Opcional
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
+
+            $user = User::create($userData);
 
             // Asigna el rol al usuario
             $this->rolePermissionService->assignRoleToUser($user, 'user');
@@ -89,6 +95,7 @@ class AuthController
             return response()->json(['error' => 'Error registering user'], 500);
         }
     }
+
 
     /**
      * @OA\Post(
