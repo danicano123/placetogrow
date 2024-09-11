@@ -60,6 +60,7 @@ Route::prefix('v1')->group(function () {
             Route::get('user/{document}', [PaymentController::class, 'getPaymentsByDocument']);
             Route::get('microsite/{micrositeId}', [PaymentController::class, 'getPaymentsByMicrosite'])->middleware(Authorize::using('read microsites'));
             Route::post('', [PaymentController::class, 'store']);
+            Route::delete('{id}', [PaymentController::class, 'destroy'])->middleware(Authorize::using('delete microsites'));
         });
         Route::prefix('payment-fields')->group(function () {
             Route::post('', [PaymentFieldController::class, 'store']);
