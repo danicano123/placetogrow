@@ -9,6 +9,7 @@ use App\Domain\Forms\Controllers\FormFieldController;
 use App\Domain\Forms\Controllers\FormFieldOptionController;
 use App\Domain\Payments\Controllers\PaymentController;
 use App\Domain\Payments\Controllers\PaymentFieldController;
+use App\Domain\Subscriptions\Controllers\SubscriptionController;
 use Illuminate\Auth\Middleware\Authorize;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,14 @@ Route::prefix('v1')->group(function () {
         });
         Route::prefix('payment-fields')->group(function () {
             Route::post('', [PaymentFieldController::class, 'store']);
+        });
+        Route::prefix('subscriptions')->group(function () {
+            Route::get('/', [SubscriptionController::class, 'index']);  // Obtener todas las suscripciones
+            Route::post('/', [SubscriptionController::class, 'store']); // Crear una nueva suscripción
+            Route::get('/{id}', [SubscriptionController::class, 'show']); // Obtener una suscripción por ID
+            Route::put('/{id}', [SubscriptionController::class, 'update']); // Actualizar una suscripción
+            Route::delete('/{token}', [SubscriptionController::class, 'destroy']); // Eliminar una suscripción
+            Route::get('/{userId}/{micrositeId}', [SubscriptionController::class, 'getSubscriptionByUserIdAndMicrositeId']); // Obtener suscripciones por user_id
         });
     });
 });
