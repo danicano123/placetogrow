@@ -2,7 +2,6 @@
 
 namespace App\Domain\Forms\Controllers;
 
-use App\Domain\Forms\Models\FormField;
 use App\Domain\Forms\Requests\FormFieldRequest;
 use App\Domain\Forms\Services\FormFieldService;
 use Illuminate\Http\Request;
