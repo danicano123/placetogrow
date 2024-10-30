@@ -19,7 +19,7 @@ return new class () extends Migration {
             $table->string('value')->nullable();
             $table->boolean('is_required')->default(false);
             $table->string('type')->nullable();
-            ;
+            $table->integer('term')->nullable();
             $table->timestamps();
         });
     }

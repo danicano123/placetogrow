@@ -24,6 +24,7 @@ class FormField extends Model
         'value',
         'is_required',
         'type',
+        'term',
     ];
 
     /**

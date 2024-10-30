@@ -13,6 +13,9 @@ return new class () extends Migration {
             $table->string('token')->unique();
             $table->string('subtoken')->unique();
             $table->foreignId('microsite_id')->constrained('microsites')->onDelete('cascade');
+            $table->decimal('value', 8, 2);
+            $table->integer('term');
+            $table->integer('current_term')->default(0);
             $table->timestamps();
         });
     }

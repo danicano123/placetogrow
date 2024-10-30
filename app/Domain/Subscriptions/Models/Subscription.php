@@ -16,13 +16,20 @@ class Subscription extends Model
         'token',
         'subtoken',
         'microsite_id',
+        'value',
+        'term',
+        'current_term',
     ];
 
     // Relación con el modelo User
     public function user()
     {
         return $this->belongsTo(User::class);
-        return $this->belongsTo(Microsite::class);
+    }
 
+    // Relación con el modelo Microsite
+    public function microsite()
+    {
+        return $this->belongsTo(Microsite::class);
     }
 }
