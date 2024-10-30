@@ -2,6 +2,7 @@
 
 namespace App\Domain\Forms\Controllers;
 
+use App\Domain\Forms\Requests\FormFieldRequest;
 use App\Domain\Forms\Services\FormFieldService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class FormFieldController
         }
     }
 
-    public function store(Request $request)
+    public function store(FormFieldRequest $request)
     {
         try {
             $formField = $this->formFieldService->createFormField($request);
